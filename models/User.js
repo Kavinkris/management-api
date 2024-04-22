@@ -42,11 +42,24 @@ class User {
             });
         });
     }
-    static updateBlog(newBlog) {
+    static createBlog(newBlog) {
         return new Promise((resolve, reject) => {
             const guid = uuidv4();
             newBlog.guid = guid;
             connection.query('INSERT INTO websitedomdata SET ?', newBlog, (err, results) => {
+                if (err) {
+                    console.error('Error creating Blog:', err);
+                    return reject(err);
+                }
+                resolve({ guid: guid, ...newBlog });
+            });
+        });
+    }
+    static updateBlog(userId, newBlog) {
+        return new Promise((resolve, reject) => {
+            const guid = uuidv4();
+            newBlog.guid = guid;
+            connection.query('UPDATE websitedomdata SET ? WHERE id = ?', [newBlog, userId], (err, results) => {
                 if (err) {
                     console.error('Error creating Blog:', err);
                     return reject(err);

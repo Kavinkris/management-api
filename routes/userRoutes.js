@@ -41,4 +41,7 @@ router.put('/updateUser/:id', authMiddleware.authenticateToken, UserController.u
 // website Blog Content upload
 router.post('/addBlog', authMiddleware.authenticateToken, upload.single('file'), UserController.addBlogContent);
 
+// website Blog Content upload
+// router.put('/addBlog/:id', authMiddleware.authenticateToken, upload.single('file'), UserController.updateBlogContent);
+
 module.exports = router;
