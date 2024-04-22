@@ -30,10 +30,8 @@ class AuthController {
 
     static async register(req, res) {
         try {
-            console.log(req.body);
             const { username, email, password, manageType } = req.body;
             const existingUser = await User.getByUsernameOrEmail(username, email);
-            console.log(existingUser);
             if (existingUser) {
                 return res.status(400).json({ error: 'Username or email already exists' });
             }
@@ -52,7 +50,6 @@ class AuthController {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     }
-    
 }
 
 module.exports = AuthController;
