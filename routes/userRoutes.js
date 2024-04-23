@@ -42,6 +42,12 @@ router.put('/updateUser/:id', authMiddleware.authenticateToken, UserController.u
 router.post('/addBlog', authMiddleware.authenticateToken, upload.single('file'), UserController.addBlogContent);
 
 // website Blog Content upload
-// router.put('/addBlog/:id', authMiddleware.authenticateToken, upload.single('file'), UserController.updateBlogContent);
+router.put('/updateBlog/:id', authMiddleware.authenticateToken, upload.single('file'), UserController.updateBlogContent);
+
+// website Blog List For Admin Console
+router.get('/blogs', authMiddleware.authenticateToken, UserController.getAllBlogs);
+
+// Website Blog List For Website
+router.get('/WebsiteBlogs', UserController.getWebSiteBlogs); 
 
 module.exports = router;

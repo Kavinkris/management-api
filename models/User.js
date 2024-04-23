@@ -28,7 +28,28 @@ class User {
             });
         });
     }
-
+    static getAllblogsList() {
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT * FROM websitedomdata WHERE guid!=''`, (err, results) => {
+                if (err) {
+                    console.error('Error updating file URL:', err);
+                    return reject(err);
+                }
+                resolve(results);
+            })
+        })
+    }
+    static getAllwebsiteBlogs() {
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT * FROM websitedomdata WHERE guid!=''`, (err, results) => {
+                if (err) {
+                    console.error('Error updating file URL:', err);
+                    return reject(err);
+                }
+                resolve(results);
+            })
+        })
+    }
     static create(newUser) {
         return new Promise((resolve, reject) => {
             const guid = uuidv4();

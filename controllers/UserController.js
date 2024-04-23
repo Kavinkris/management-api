@@ -36,6 +36,15 @@ class UserController {
         }
     }
 
+    static async getWebSiteBlogs(req, res) {
+        try {
+            const users = await User.getAllwebsiteBlogs();
+            res.json(users);
+        } catch (err) {
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
+
     static async addBlogContent(req, res) {
         try {
             if (!req.file) {
@@ -60,6 +69,14 @@ class UserController {
                 console.error('Error uploading file:', err);
                 res.status(500).json({ error: 'Internal Server Error' });
             }
+        }
+    }
+    static async getAllBlogs(req, res) {
+        try {
+            const users = await User.getAllblogsList();
+            res.json(users);
+        } catch (error) {
+            res.status(500).json({ error: 'Internal Server Error' });
         }
     }
     static async updateBlogContent(req, res) {
